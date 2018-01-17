@@ -45,7 +45,7 @@ class NewEvents (scrapy.Spider):
                     if val.strip()
                 ]
                 if fields[i-1] != 'Symbol' and fields[i-1] != 'Name':
-                    value = value[0].replace('?', '').replace('*', '').replace('$', '').replace('%', '').replace(',', '').encode('utf-8') if value else None
+                    value = value[0].replace('?', '').replace('*', '').replace('$', '').replace('%', '').replace(',', '').replace('Low ', '').replace('Vol', '0').encode('utf-8') if value else None
                     item[fields[i-1]] = value if value else None
                 else:
                     item[fields[i-1]] = value[0].encode('utf-8') if value else ''
