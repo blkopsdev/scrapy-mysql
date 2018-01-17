@@ -44,5 +44,9 @@ class NewEvents (scrapy.Spider):
                                         ' .//td[position()={position}]/text()'.format(position=i+1)).extract()
                     if val.strip()
                 ]
-                item[fields[i-1]] = value[0].replace('?', '').replace('*', '') if value else u''
+                if fields[i-1] != 'Symbol' and fields[i-1] != 'Name':
+                    value = value[0].replace('?', '').replace('*', '').replace('$', '').replace('%', '').replace(',', '').encode('utf-8') if value else None
+                    item[fields[i-1]] = value if value else None
+                else:
+                    item[fields[i-1]] = value[0].encode('utf-8') if value else ''
             yield item

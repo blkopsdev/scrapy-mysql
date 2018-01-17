@@ -27,11 +27,11 @@ class ScraperPipeline(object):
                 """INSERT INTO currency 
                 (name, symbol, marketcap, price, circulatingsupply, volume, percent_1h, percent_24h, percent_7d) 
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""", (
-                    item['Name'].encode('utf-8'), item['Symbol'].encode('utf-8'),
-                    item['MarketCap'].encode('utf-8'), item['Price'].encode('utf-8'),
-                    item['CirculatingSupply'].encode('utf-8'), item['Volume'].encode('utf-8'),
-                    item['Percent_1h'].encode('utf-8'), item['Percent_24h'].encode('utf-8'),
-                    item['Percent_7d'].encode('utf-8')
+                    item['Name'], item['Symbol'],
+                    item['MarketCap'], item['Price'],
+                    item['CirculatingSupply'], item['Volume'],
+                    item['Percent_1h'], item['Percent_24h'],
+                    item['Percent_7d']
                 )
             )
 
