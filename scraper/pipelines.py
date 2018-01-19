@@ -22,6 +22,11 @@ class ScraperPipeline(object):
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
+        method = getattr(self, spider.name)
+        return method(item)
+
+    def coinmarketcap(self, item):
+
         try:
             self.cursor.execute(
                 """INSERT INTO currency 
@@ -32,6 +37,26 @@ class ScraperPipeline(object):
                     item['CirculatingSupply'], item['Volume'],
                     item['Percent_1h'], item['Percent_24h'],
                     item['Percent_7d']
+                )
+            )
+
+            self.conn.commit()
+
+        except MySQLdb.Error, e:
+            print("Error %d: %s" % (e.args[0], e.args[1]))
+
+        return item
+
+    def bitcoinmarket(self, item):
+
+        try:
+            self.cursor.execute(
+                """INSERT INTO bitcoinmarket 
+                (source, pair, volume_hr, price, volume_per, updated) 
+                VALUES (%s, %s, %s, %s, %s, %s)""", (
+                    item['Source'], item['Pair'],
+                    item['Volume_hr'], item['Price'],
+                    item['Volume_per'], item['Updated']
                 )
             )
 
