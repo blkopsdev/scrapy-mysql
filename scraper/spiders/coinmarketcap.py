@@ -24,7 +24,7 @@ class NewEvents (scrapy.Spider):
 
     def _parse_data(self, response):
         fields = [
-            'Name',
+            '',
             'Symbol',
             'MarketCap',
             'Price',
