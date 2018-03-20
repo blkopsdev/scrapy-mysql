@@ -1,6 +1,8 @@
 # Python cache
 __pycache__
 *.pyc
+.idea/*.xml
+.idea/*.iml
 scraper/__init__.pyc
 scraper/items.pyc
 scraper/middlewares.pyc
@@ -9,5 +11,5 @@ scraper/settings.pyc
 scraper/spiders/coinmarketcap.pyc
 scraper/spiders/bitcoinmarket.pyc
 scraper/spiders/__init__.pyc
-
+scraper/spiders/*.csv
 
